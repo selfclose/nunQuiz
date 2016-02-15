@@ -37,12 +37,6 @@ gulp.task('do_coffee', function(){
       .pipe(gulp.dest('./www/js'));
 });
 
-gulp.task('do_concat', function () {
-  return gulp.src(paths.coffee)
-      .pipe(concat('script.js'))
-      .pipe(gulp.dest('./www/js'));
-});
-
 /*-------------- end convert ---------------*/
 
 /*================ WATCH Zone ===================*/

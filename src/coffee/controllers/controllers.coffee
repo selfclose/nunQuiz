@@ -1,9 +1,3 @@
-app.controller('LoginCtrl', ($scope, $state) ->
-    $scope.goTest = ->
-        console.log('YES')
-        $state.go('tab.main')
-)
-
 app.controller('ChatsCtrl', ($scope, Chats) ->
     $scope.chats = Chats.all()
 
