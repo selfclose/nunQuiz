@@ -1,12 +1,14 @@
 var gulp = require('gulp');
 var jade = require('gulp-jade');
 var sass = require('gulp-sass');
+var coffee = require('gulp-coffee');
 var watch = require('gulp-watch');
 var browserSync = require('browser-sync').create();
 
 var paths = {
   jade: './src/**/*.jade',
-  scss: './src/scss/**/*.scss'
+  scss: './src/scss/**/*.scss',
+  coffee: './src/coffee/**/*.coffee'
 };
 
 /*================ Convert Zone ===================*/
@@ -23,12 +25,19 @@ gulp.task('do_sass', function(){
       .pipe(browserSync.stream());
 });
 
+gulp.task('do_coffee', function(){
+  gulp.src(paths.coffee)
+      .pipe(coffee())
+      .pipe(gulp.dest('./www/js'));
+});
+
 /*-------------- end convert ---------------*/
 
 /*================ WATCH Zone ===================*/
 gulp.task('watchChange', function(){
   gulp.watch(paths.jade, ['do_jade']);
   gulp.watch(paths.scss, ['do_sass']);
+  gulp.watch(paths.coffee, ['do_coffee']);
 });
 
 /* server Sync use Watch */
@@ -54,4 +63,4 @@ gulp.task('test', function(){
   console.log('OK WOW!');
 });
 
-gulp.task('default', ['do_jade', 'do_sass','watchChange','serve']);
+gulp.task('default', ['do_jade', 'do_sass', 'do_coffee', 'watchChange','serve']);
