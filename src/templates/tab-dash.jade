@@ -1,0 +1,17 @@
+ion-view(title='Sign-In')
+    ion-content
+        h2 Ultimate werewolf
+        h4 แอ๊พช่วยเล่นและจัดการ
+        img(ng-src='https://cf.geekdo-images.com/images/pic1849390_t.jpg')
+        .list
+            label.item.item-input
+                span.input-label Username
+                input(type='text', ng-model='user.username')
+            label.item.item-input
+                span.input-label Password
+                input(type='password', ng-model='user.password')
+        .padding
+            button.button.button-block.button-positive(ng-click='signIn(user)')
+                | Sign-In
+            p.text-center
+                a(href='#/forgot-password') Forgot password
