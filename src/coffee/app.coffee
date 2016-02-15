@@ -1,9 +1,12 @@
 angular.module('starter', [
   'ionic'
+#  'answer.controllers'
   'starter.controllers'
   'starter.services'
   'service.card'
-]).run(($ionicPlatform) ->
+])
+
+.run(($ionicPlatform) ->
   $ionicPlatform.ready ->
 # Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 # for form inputs)
@@ -16,25 +19,35 @@ angular.module('starter', [
     return
   return
 ).config ($stateProvider, $urlRouterProvider) ->
-  $stateProvider.state('tab',
-    url: '/tab'
-    abstract: true
-    templateUrl: 'templates/tabs.html').state('tab.dash',
-    url: '/dash'
-    views: 'tab-dash':
-      templateUrl: 'templates/tab-dash.html'
-      controller: 'DashCtrl').state('tab.chats',
-    url: '/chats'
-    views: 'tab-chats':
-      templateUrl: 'templates/tab-chats.html'
-      controller: 'ChatsCtrl').state('tab.chat-detail',
-    url: '/chats/:chatId'
-    views: 'tab-chats':
-      templateUrl: 'templates/chat-detail.html'
-      controller: 'ChatDetailCtrl').state 'tab.account',
-    url: '/account'
-    views: 'tab-account':
-      templateUrl: 'templates/tab-account.html'
-      controller: 'AccountCtrl'
-  $urlRouterProvider.otherwise '/tab/dash'
+  $stateProvider
+
+  .state('tab',
+      url: '/tab'
+      abstract: true
+      templateUrl: 'templates/tabs.html')
+
+  .state('tab.dash',
+      url: '/dash'
+      views: 'tab-dash':
+        templateUrl: 'templates/tab-dash.html'
+        controller: 'DashCtrl')
+
+  .state('tab.chats',
+      url: '/chats'
+      views: 'tab-chats':
+        templateUrl: 'templates/tab-chats.html'
+        controller: 'ChatsCtrl')
+
+  .state('tab.chat-detail',
+      url: '/chats/:chatId'
+      views: 'tab-chats':
+        templateUrl: 'templates/chat-detail.html'
+        controller: 'ChatDetailCtrl')
+
+  .state 'tab.account',
+      url: '/account'
+      views: 'tab-account':
+        templateUrl: 'templates/tab-account.html'
+        controller: 'AccountCtrl'
+    $urlRouterProvider.otherwise '/tab/dash'
   return
