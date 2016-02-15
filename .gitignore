@@ -5,6 +5,5 @@ node_modules/
 platforms/
 plugins/
 .idea/*
-www/js/
-www/css/
-www/templates/
+www/
+!www/img/*
