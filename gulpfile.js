@@ -2,13 +2,18 @@ var gulp = require('gulp');
 var jade = require('gulp-jade');
 var sass = require('gulp-sass');
 var coffee = require('gulp-coffee');
+var concat = require('gulp-concat');
 var watch = require('gulp-watch');
 var browserSync = require('browser-sync').create();
 
 var paths = {
   jade: './src/**/*.jade',
   scss: './src/scss/**/*.scss',
-  coffee: './src/coffee/**/*.coffee'
+  coffee: [
+      './src/coffee/app.coffee',
+      './src/coffee/routing.coffee',
+      './src/coffee/controllers/**/*.coffee'
+  ]
 };
 
 /*================ Convert Zone ===================*/
@@ -27,7 +32,14 @@ gulp.task('do_sass', function(){
 
 gulp.task('do_coffee', function(){
   gulp.src(paths.coffee)
-      .pipe(coffee())
+      .pipe(coffee({bare: true}))
+      .pipe(concat('script.js'))
+      .pipe(gulp.dest('./www/js'));
+});
+
+gulp.task('do_concat', function () {
+  return gulp.src(paths.coffee)
+      .pipe(concat('script.js'))
       .pipe(gulp.dest('./www/js'));
 });
 
@@ -38,6 +50,7 @@ gulp.task('watchChange', function(){
   gulp.watch(paths.jade, ['do_jade']);
   gulp.watch(paths.scss, ['do_sass']);
   gulp.watch(paths.coffee, ['do_coffee']);
+  //gulp.watch(paths.coffee, ['do_concat']);
 });
 
 /* server Sync use Watch */

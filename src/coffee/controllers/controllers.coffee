@@ -1,12 +1,10 @@
-angular.module('starter.controllers', [])
-
-.controller('DashCtrl', ($scope, $state) ->
+app.controller('LoginCtrl', ($scope, $state) ->
     $scope.goTest = ->
         console.log('YES')
         $state.go('tab.main')
 )
 
-.controller('ChatsCtrl', ($scope, Chats) ->
+app.controller('ChatsCtrl', ($scope, Chats) ->
     $scope.chats = Chats.all()
 
     $scope.remove = (chat) ->
@@ -16,11 +14,12 @@ angular.module('starter.controllers', [])
     return
 )
 
-.controller('ChatDetailCtrl', ($scope, $stateParams, Chats) ->
+app.controller('ChatDetailCtrl', ($scope, $stateParams, Chats) ->
     $scope.chat = Chats.get($stateParams.chatId)
     return
 )
 
-.controller 'AccountCtrl', ($scope) ->
-    $scope.settings = enableFriends: true
+app.controller 'AccountCtrl', ($scope) ->
+    $scope.settings =
+        enableFriends: true
     return
