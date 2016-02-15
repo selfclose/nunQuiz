@@ -18,36 +18,46 @@ angular.module('starter', [
       StatusBar.styleDefault()
     return
   return
-).config ($stateProvider, $urlRouterProvider) ->
+)
+
+.config ($stateProvider, $urlRouterProvider) ->
   $stateProvider
 
-  .state('tab',
+  .state 'tab',
       url: '/tab'
       abstract: true
-      templateUrl: 'templates/tabs.html')
+      templateUrl: 'templates/tabs.html'
 
-  .state('tab.dash',
-      url: '/dash'
+  .state 'tab.login',
+      url: '/login'
       views: 'tab-dash':
         templateUrl: 'templates/tab-dash.html'
-        controller: 'DashCtrl')
+        controller: 'DashCtrl'
 
-  .state('tab.chats',
+  .state 'tab.main',
+      url: '/main'
+      views: 'tab-dash':
+        templateUrl: 'templates/tab-dash.html'
+        controller: 'DashCtrl'
+
+
+  .state 'tab.chats',
       url: '/chats'
       views: 'tab-chats':
         templateUrl: 'templates/tab-chats.html'
-        controller: 'ChatsCtrl')
+        controller: 'ChatsCtrl'
 
-  .state('tab.chat-detail',
+  .state 'tab.chat-detail',
       url: '/chats/:chatId'
       views: 'tab-chats':
         templateUrl: 'templates/chat-detail.html'
-        controller: 'ChatDetailCtrl')
+        controller: 'ChatDetailCtrl'
 
   .state 'tab.account',
       url: '/account'
       views: 'tab-account':
         templateUrl: 'templates/tab-account.html'
         controller: 'AccountCtrl'
-    $urlRouterProvider.otherwise '/tab/dash'
+
+    $urlRouterProvider.otherwise '/tab/login'
   return
